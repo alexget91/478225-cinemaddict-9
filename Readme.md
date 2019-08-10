@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Гетманец](https://up.htmlacademy.ru/ecmascript/9/user/478225).
-* Наставник: `Неизвестно`.
+* Наставник: `Кекс`.
 
 ---
 
