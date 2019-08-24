@@ -16,5 +16,5 @@ export const createFilmsListTemplate = () => {
         <div class="films-list__container js-list"></div>
       </section>
     </section>
-  `;
+  `.trim();
 };
