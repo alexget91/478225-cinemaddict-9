@@ -1,8 +1,9 @@
 import {createElement} from "../utils";
 
 export default class FilmsList {
-  constructor() {
+  constructor(notEmpty) {
     this._element = null;
+    this._notEmpty = notEmpty;
   }
 
   getElement() {
@@ -22,10 +23,12 @@ export default class FilmsList {
       <section class="films">
         <section class="films-list js-films-list">
           <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
-          <div class="films-list__container js-list"></div>
+          ${this._notEmpty ? `<div class="films-list__container js-list"></div>` : `<div class="no-result">
+            There are no movies in our database
+          </div>`}
         </section>
         
-        <section class="films-list--extra js-top-rated">
+        ${this._notEmpty ? `<section class="films-list--extra js-top-rated">
           <h2 class="films-list__title">Top rated</h2>
           <div class="films-list__container js-list"></div>
         </section>
@@ -33,7 +36,7 @@ export default class FilmsList {
         <section class="films-list--extra js-most-commented">
           <h2 class="films-list__title">Most commented</h2>
           <div class="films-list__container js-list"></div>
-        </section>
+        </section>` : ``}
       </section>
     `.trim();
   }
