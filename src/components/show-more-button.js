@@ -1,5 +1,25 @@
-export const createShowMoreButtonTemplate = () => {
-  return `
-    <button class="films-list__show-more js-load-more">Show more</button>
-  `.trim();
-};
+import {createElement} from "../utils";
+
+export default class ShowMoreButton {
+  constructor() {
+    this._element = null;
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return `
+      <button class="films-list__show-more js-load-more">Show more</button>
+    `.trim();
+  }
+}
