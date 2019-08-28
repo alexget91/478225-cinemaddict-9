@@ -47,6 +47,16 @@ const renderFilm = (container, filmData) => {
       }
     });
 
+  filmDetails.getElement().querySelector(`textarea`)
+    .addEventListener(`focus`, () => {
+      document.removeEventListener(`keydown`, onEscKeyDown);
+    });
+
+  filmDetails.getElement().querySelector(`textarea`)
+    .addEventListener(`blur`, () => {
+      document.addEventListener(`keydown`, onEscKeyDown);
+    });
+
   filmDetails.getElement()
     .querySelector(`.js-film-detail-close`)
     .addEventListener(`click`, closeDetailPopup);
@@ -64,13 +74,12 @@ render(pageHeaderElement, new Search().getElement(), Position.BEFOREEND);
 render(pageHeaderElement, new UserRank(getUserRank()).getElement(), Position.BEFOREEND);
 render(pageMainElement, new SiteMenu(getFiltersCount(films)).getElement(), Position.BEFOREEND);
 render(pageMainElement, new Sort().getElement(), Position.BEFOREEND);
+render(pageMainElement, new FilmsList(films.length).getElement(), Position.BEFOREEND);
 
 let filmsListContainerElement;
 let buttonLoadMore;
 
 if (films.length) {
-  render(pageMainElement, new FilmsList().getElement(), Position.BEFOREEND);
-
   const filmsListElement = document.querySelector(`.js-films-list`);
   filmsListContainerElement = filmsListElement.querySelector(`.js-list`);
   const filmsTopRatedContainerElement = document.querySelector(`.js-top-rated`).querySelector(`.js-list`);
