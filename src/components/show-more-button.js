@@ -1,25 +1,13 @@
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
-export default class ShowMoreButton {
-  constructor() {
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
-  }
-
+export default class ShowMoreButton extends AbstractComponent {
   getTemplate() {
     return `
       <button class="films-list__show-more js-load-more">Show more</button>
     `.trim();
+  }
+
+  hide() {
+    this._element.style.display = `none`;
   }
 }

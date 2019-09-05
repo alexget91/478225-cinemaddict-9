@@ -1,24 +1,21 @@
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
-export default class UserRank {
+export default class UserRank extends AbstractComponent {
   constructor(filmsCount) {
-    this._element = null;
+    super();
     this._filmsCount = filmsCount;
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
+  getTemplate() {
+    return `
+      <section class="header__profile profile">
+        <p class="profile__rating">${this._getRankText(this._filmsCount)}</p>
+        <img class="profile__avatar" src="images/bitmap@2x.png" alt="Avatar" width="35" height="35">
+      </section>
+    `.trim();
   }
 
-  removeElement() {
-    this._element = null;
-  }
-
-  getRankText(filmsCount) {
+  _getRankText(filmsCount) {
     if (filmsCount > 20) {
       return `Movie Buff`;
     } else if (filmsCount > 10) {
@@ -28,14 +25,5 @@ export default class UserRank {
     }
 
     return ``;
-  }
-
-  getTemplate() {
-    return `
-      <section class="header__profile profile">
-        <p class="profile__rating">${this.getRankText(this._filmsCount)}</p>
-        <img class="profile__avatar" src="images/bitmap@2x.png" alt="Avatar" width="35" height="35">
-      </section>
-    `.trim();
   }
 }
