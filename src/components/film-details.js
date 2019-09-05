@@ -1,9 +1,10 @@
-import {createElement, getHoursFromMinutes} from "../utils";
+import {getHoursFromMinutes} from "../utils";
+import AbstractComponent from "./abstract-component";
 
-export default class FilmDetails {
+export default class FilmDetails extends AbstractComponent {
   constructor({poster, title, age, rating, userRating, director, writers, actors, date,
     duration, country, genre, description, isInWatchList, isWatched, isFavorite, comments}) {
-    this._element = null;
+    super();
     this._poster = poster;
     this._title = title;
     this._age = age;
@@ -21,18 +22,6 @@ export default class FilmDetails {
     this._isWatched = isWatched;
     this._isFavorite = isFavorite;
     this._comments = comments;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 
   getTemplate() {

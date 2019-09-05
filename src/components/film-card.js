@@ -1,10 +1,11 @@
-import {createElement, getHoursFromMinutes} from "../utils";
+import AbstractComponent from "./abstract-component";
+import {getHoursFromMinutes} from "../utils";
 
 const MAX_DESCRIPTION_LENGTH = 139;
 
-export default class FilmCard {
+export default class FilmCard extends AbstractComponent {
   constructor({title, rating, date, duration, genre, poster, description, comments}) {
-    this._element = null;
+    super();
     this._title = title;
     this._rating = rating;
     this._date = date;
@@ -13,18 +14,6 @@ export default class FilmCard {
     this._poster = poster;
     this._description = description;
     this._comments = comments;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 
   getTemplate() {
