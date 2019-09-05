@@ -1,7 +1,6 @@
 import Search from './components/search';
 import UserRank from './components/user-rank';
 import SiteMenu from './components/site-menu';
-import Sort from './components/sort';
 import {getFilm, getUserRank, getFiltersCount} from './data';
 import {getRandomInt, Position, render} from './utils';
 import PageController from "./controllers/page-controller";
@@ -18,6 +17,5 @@ const films = new Array(getRandomInt(MIN_FILMS_COUNT, MAX_FILMS_COUNT)).fill(``)
 render(pageHeaderElement, new Search().getElement(), Position.BEFOREEND);
 render(pageHeaderElement, new UserRank(getUserRank()).getElement(), Position.BEFOREEND);
 render(pageMainElement, new SiteMenu(getFiltersCount(films)).getElement(), Position.BEFOREEND);
-render(pageMainElement, new Sort().getElement(), Position.BEFOREEND);
 
 new PageController(pageMainElement, films).init();
